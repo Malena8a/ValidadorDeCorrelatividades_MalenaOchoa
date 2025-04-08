@@ -1,0 +1,32 @@
+@startuml
+
+class Alumno {
+-legajo : Integer
+-nombre : String
+-apellido : String
+-materiasAprobadas : List<Materias>
+
++ cumpleCorrelativas(materia :Materia) : boolean
++ agregarMateriasAprobada (materia :Materia)
+}
+
+class Materia {
+-nombre : String
+-correlativas : List<Materias>
+
+}
+
+class Inscripcion {
+-alumno : Alumno
+-materias : List<Materia>
+
++ aprobada(): boolean
+}
+
+
+Alumno  o-- "0..*" Materia
+Materia "0..*" -> "0..*" Materia
+Inscripcion "1" *-- "1..*" Materia
+Inscripcion "1" -> "1" Alumno
+
+@enduml
